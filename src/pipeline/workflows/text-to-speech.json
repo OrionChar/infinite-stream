@@ -1,0 +1,77 @@
+{
+  "187": {
+    "inputs": {
+      "text": [
+        "189",
+        0
+      ],
+      "narrator_voice": "none",
+      "seed": 1259389536,
+      "enable_chunking": true,
+      "max_chars_per_chunk": 400,
+      "chunk_combination_method": "auto",
+      "silence_between_chunks_ms": 100,
+      "enable_audio_cache": true,
+      "batch_size": 0,
+      "TTS_engine": [
+        "193",
+        0
+      ],
+      "opt_narrator": [
+        "194",
+        0
+      ]
+    },
+    "class_type": "UnifiedTTSTextNode",
+    "_meta": {
+      "title": "🎤 TTS Text"
+    }
+  },
+  "189": {
+    "inputs": {
+      "value": ""
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "String (Multiline)"
+    }
+  },
+  "193": {
+    "inputs": {
+      "language": "English",
+      "device": "auto",
+      "exaggeration": 0.5,
+      "temperature": 0.8,
+      "cfg_weight": 0.5,
+      "crash_protection_template": "hmm ,, {seg} hmm ,,"
+    },
+    "class_type": "ChatterBoxEngineNode",
+    "_meta": {
+      "title": "⚙️ ChatterBox TTS Engine"
+    }
+  },
+  "194": {
+    "inputs": {
+      "voice_name": "voices_examples/higgs_audio/belinda.wav",
+      "reference_text": ""
+    },
+    "class_type": "CharacterVoicesNode",
+    "_meta": {
+      "title": "🎭 Character Voices"
+    }
+  },
+  "195": {
+    "inputs": {
+      "filename_prefix": "audio/ComfyUI",
+      "audioUI": "",
+      "audio": [
+        "187",
+        0
+      ]
+    },
+    "class_type": "SaveAudio",
+    "_meta": {
+      "title": "Save Audio (FLAC)"
+    }
+  }
+}
