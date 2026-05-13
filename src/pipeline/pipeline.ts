@@ -6,7 +6,7 @@ import PipelineLogger from "./pipeline-logger.js"
 
 export default class Pipeline {
     private stages: PipelineStage<unknown>[] = [
-        // new WritingStage(process.env.LLM_STUDIO_HOST, process.env.LLM_STUDIO_PORT, process.env.ARTICLE_STORAGE),
+        new WritingStage(process.env.LLM_STUDIO_HOST, process.env.LLM_STUDIO_PORT, process.env.ARTICLE_STORAGE),
         new DubbingStage(process.env.COMFYUI_HOST, process.env.COMFYUI_HOST_PORT, process.env.SCRIPT_STORAGE),
         new RenderingStage(process.env.TEMPORAL_STORAGE, process.env.AUDIO_STORAGE),
         new StreamingStage(process.env.STREAMING_RTMP_SERVER, process.env.STREAMING_RTMP_KEY, process.env.VIDEO_STORAGE),
@@ -19,7 +19,7 @@ export default class Pipeline {
             stage.init();
             this.logger.log(stage)
         })
-        // this.listenUpdates()
+        this.listenUpdates()
     }
 
     private fileManipulator = new FileManipulator()

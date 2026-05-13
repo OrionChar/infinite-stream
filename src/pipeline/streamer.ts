@@ -40,7 +40,6 @@ export default class Streamer implements PipelineNode<FilePath, unknown> {
         return new Promise((resolve, reject) => {
             const videoStream = fs.createReadStream(videoFilepath)
             videoStream.pipe(this.ffmpegProcess.stdin)
-            videoStream.on('data', (chunk) => console.log(chunk))
             videoStream.on('end', () => resolve(ok(0)))
             videoStream.on('error', (error) => reject(err(error)))
         })
