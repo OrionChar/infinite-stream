@@ -182,7 +182,7 @@ export class RenderingStage extends PipelineStage<string> {
         const audioFilename = payload.data
         const audioLocation = payload.location
 
-        const videoFileName = `${path.basename(audioFilename, path.extname(audioFilename))}.mp4`
+        const videoFileName = `${path.basename(audioFilename, path.extname(audioFilename))}.mkv`
         const videoLocation = path.join(this.temporalStorage, videoFileName)
 
         const result = await this.renderer.run({sourceAudioLocation: audioLocation, destinationVideoLocation: videoLocation})
