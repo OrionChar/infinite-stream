@@ -1,6 +1,6 @@
 import path from "path"
 import FileManipulator from "../utils/file-manipulator.js"
-import RSSScraper from "../rss/rss-scraper.js"
+import Scraper from "../rss/scraper.js"
 import PipelineStage, { DubbingStage, RenderingStage, StreamingStage, WritingStage } from "./pipiline-stage.js"
 import PipelineLogger from "./pipeline-logger.js"
 
@@ -23,7 +23,7 @@ export default class Pipeline {
     }
 
     private fileManipulator = new FileManipulator()
-    private scrapper = new RSSScraper()
+    private scrapper = new Scraper()
 
     private listenUpdates() {
         setInterval(async () => {
