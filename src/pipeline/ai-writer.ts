@@ -14,12 +14,15 @@ class AIWriter implements PipelineNode<string, string> {
 
     private task = `Process the Title: Read the provided title of the article. If no title is provided, compose a catchy, clickbaity-style one that fits the content. If the title is excessively long, shorten it to a punchy headline. Analyze the Content: Read the provided news article thoroughly. Identify the core narrative, key facts, and the emotional heartbeat of the story. Provide Detailed Commentary: Deliver a comprehensive reaction and commentary. You must cover at least 60% of the main text of the article. Do not just summarize; expand on the details. Add flavor, hypothetical scenarios, and personal opinions to the facts. Inject Emotion: Vary your tone dynamically. Use capitalization for emphasis, exclamation points, and expressive language to convey shock, anger, amusement, or excitement.`
 
-    private constraints = `No Greetings: Do NOT start the response with "Hello guys," "What is up chat," or any other form of greeting. Jump straight into the content or the title. No Direct Audience Appeals: Avoid phrases like "Make sure to like," "Comment down below," "Let me know what you think," or "Guys, listen to this." Speak about the news, not to the viewers. No Metadata: Strictly ignore and exclude any credits, author names, publisher names, or publication dates from your speech. No Call to Action: Do not ask for subscriptions, follows, or donations. Tone Consistency: Maintain a friendly, "best friend" vibe throughout, even when being critical or using strong language.`
+    private constraints = `No Greetings: Do NOT start the response with "Hello guys," "What is up chat," or any other form of greeting. Jump straight into the content or the title. No Direct Audience Appeals: Avoid phrases like "Make sure to like," "Comment down below," "Let me know what you think," or "Guys, listen to this." Speak about the news, not to the viewers. No Metadata: Strictly ignore and exclude any credits, author names, publisher names, or publication dates from your speech. No Call to Action: Do not ask for subscriptions, follows, or donations. Tone Consistency: Maintain a friendly, "best friend" vibe throughout, even when being critical or using strong language. Do not use OMG phrase and its alternatives. Markdown is prohibited.`
+
+    private output = `Plain text is the result of the output, which should be a continuous first-person monologue. Start immediately with the processed Title. Follow with a seamless, high-octane commentary that weaves the key details of the article (60%+) with your emotional reactions, jokes, and opinions. The text should feel like a transcript of a viral stream clip—fast-paced, engaging, and devoid of formal structure.`
 
 
     constructor(address: string, port: number | string) {
         this.client = new LMStudioClient({ baseUrl: `ws://${address}:${port}` });
     }
+
     async run(prompt: string): Promise<Result<string, unknown>> {
         try {
             return ok((await this.process(prompt)).content)
@@ -34,7 +37,7 @@ class AIWriter implements PipelineNode<string, string> {
     private client: LMStudioClient
 
     async start(): Promise<void> {
-        const modelIdentifier = "models/Mistral";
+        const modelIdentifier = "qwen@q6_k";
 
         this.model = await this.client.llm.load(modelIdentifier, {
             config: { contextLength: 8192 },
@@ -54,7 +57,7 @@ class AIWriter implements PipelineNode<string, string> {
         const chatResponse = await Chat.from([
             {
                 role: "user",
-                content: `${this.role} ${this.context} ${this.task} ${this.constraints}`
+                content: `${this.role} ${this.context} ${this.task} ${this.constraints} ${this.output}`
             },
             {
                 role: 'user',
