@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     // "strictNullChecks": true,
+    "types": ["vite/client", "vitest/globals"],
     "target": "es2022",
     "module": "nodenext",
     "lib": ["ES2022"],
@@ -22,5 +23,5 @@
     "skipLibCheck": true,
   },
   "exclude": [],
-  "include": ["src", "env.d.ts", "src/__tests__", "eslint.config.mjs", "tsconfig.release.json", "tsconfig.vitest.json", "tsconfig.eslint.json"]
+  "include": ["src", "env.d.ts", "vite-env.d.ts", "src/__tests__", "eslint.config.mjs", "tsconfig.release.json", "tsconfig.vitest.json", "tsconfig.eslint.json"]
 }

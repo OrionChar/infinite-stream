@@ -1,19 +1,23 @@
-import PipelineStage from "./pipiline-stage.js";
+import Stage from "./stages/stage.js";
 import chalk, { ChalkInstance } from "chalk";
+import { StageInput, StageOutput } from "./stages/types.js";
 
 export default class PipelineLogger {
-    log(stage: PipelineStage<unknown>) {
-        stage.on('task:start', (stageName, payload) => {
-            console.log(this.infoStyle('START'), stageName, payload.location)
+    log(...stages: Stage<StageInput, StageOutput>[]) {
+        stages.forEach(stage => {
+            stage.on('task:start', (stageName) => {
+                console.log(this.infoStyle('START'), stageName)
+            })
+
+            stage.on('task:complete', (stageName) => {
+                console.log(this.successStyle('COMPLETE'), stageName)
+            })
+
+            stage.on('task:error', (error) => {
+                console.log(this.errorStyle('ERROR'), error)
+            })
         })
 
-        stage.on('task:complete', (stageName, payload) => {
-            console.log(this.successStyle('COMPLETE'), stageName, payload.location)
-        })
-
-        stage.on('task:error', (error) => {
-            console.log(this.errorStyle('ERROR'), error.toString())
-        })
     }
 
     private errorStyle: ChalkInstance = chalk.bgRed.white

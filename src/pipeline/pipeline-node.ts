@@ -1,5 +1,5 @@
 import { Result } from "neverthrow";
 
-export default interface PipelineNode<P, V> {
-    run(options: P): Promise<Result<V, unknown>>
+export default interface PipelineNode<PARAM, RESULT> {
+    run(options: PARAM): Promise<Result<RESULT, unknown>>
 }

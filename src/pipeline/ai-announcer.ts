@@ -4,11 +4,6 @@ import PipelineNode from "./pipeline-node.js";
 import { ok, err, Result } from "neverthrow";
 import {  } from "assert";
 
-/**
- * Actually it is not PipelineNode. 
- * I would call it IntelligentService, but at the current time 
- * I do no see different PipelineNode vs IntelligentService
- */
 class AIAnnouncer implements PipelineNode<string, Buffer<ArrayBuffer>> {
     private client: ComfyApi
     private host: string

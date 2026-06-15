@@ -37,7 +37,7 @@ class AIWriter implements PipelineNode<string, string> {
     private client: LMStudioClient
 
     async start(): Promise<void> {
-        const modelIdentifier = "qwen@q6_k";
+        const modelIdentifier = "mistral@q4_k_m";
 
         this.model = await this.client.llm.load(modelIdentifier, {
             config: { contextLength: 8192 },
@@ -56,7 +56,7 @@ class AIWriter implements PipelineNode<string, string> {
     private async process(text: string): Promise<PredictionResult> {
         const chatResponse = await Chat.from([
             {
-                role: "user",
+                role: "system",
                 content: `${this.role} ${this.context} ${this.task} ${this.constraints} ${this.output}`
             },
             {
