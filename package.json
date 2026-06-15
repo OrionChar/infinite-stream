@@ -8,7 +8,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.13",
     "@eslint/js": "~9.39",
-    "@types/node": "~24",
+    "@types/node": "^24.13.2",
     "@typescript-eslint/parser": "~8.54",
     "@vitest/coverage-v8": "~4.0",
     "@vitest/eslint-plugin": "~1.6",
