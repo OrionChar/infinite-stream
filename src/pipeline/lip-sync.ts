@@ -21,6 +21,7 @@ export default class LipSync implements PipelineNode<LipSyncOptions, LipSyncResu
                     `--extendedShapes`, 'GHX',
                     `-f`, 'json',
                     `--machineReadable`,
+                    `--threads`, '4',
                     options.audioFilepath
                 ],
             );
