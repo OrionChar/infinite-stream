@@ -1,11 +1,9 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      LLM_STUDIO_API_TOKEN: string,
       LLM_STUDIO_HOST: string,
       LLM_STUDIO_PORT: string,
 
-      TEMPORAL_STORAGE: string,
       ARTICLE_STORAGE: string,
       SCRIPT_STORAGE: string,
       AUDIO_STORAGE: string,
@@ -20,7 +18,6 @@ declare global {
       SH_FOLDER: string,
       BIN_FOLDER: string,
       MEDIA_FOLDER: string,
-      PYTHON_FOLDER: string,
     }
   }
 }
